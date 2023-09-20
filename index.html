@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="buscar.js"></script>
+    <link rel="stylesheet" href="style.css">
+   
+    
+</head>
+<body>
+   
+    <section class="weather-content">
+        <h1 >Buscadar el clima</h1>
+        <p class="tit"></p>
+        
+        <div class="result">
+            <p>Agrega ciudad y país</p>
+        </div>
+        <div class="current-weather">
+            <!-- Aquí se mostrará la información actual del clima -->
+        </div>
+        
+        <form action="" method="POST" class="get-weather">
+            <input type="text" name="city" id="city" placeholder="Escribe tu ciudad...">
+            <input type="text" name="country" id="country" placeholder="Escribe tu país...">
+            <input type="submit" value="Obtener Clima">
+        </form>
+       
+        <div class="tabs">
+            <a href="#" id="hourly-tab" class="b1 active-tab">24 horas</a>
+            <a href="#" id="weekly-tab" class="b2">Semanal</a>
+        </div>
+
+        
+       
+
+        <div class="hourly-forecast">
+            <table class="hourly-table" style="display: none;">
+                
+                <tbody>
+                    <!-- Aquí se llenarán los datos de la tabla -->
+                </tbody>
+            </table>
+        </div>
+
+      
+        <div class="weekly-forecast" style="display: none;">
+            <table class="weekly-table">
+               
+                <tbody>
+                    <!-- Aquí se llenarán los datos de la tabla -->
+                </tbody>
+            </table>
+        </div>
+
+        <button class="boton" id="logout-button">Cerrar Sesión</button>
+        
+    </section>
+
+</div>
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Función para eliminar la sesión
+    function clearSession() {
+        localStorage.removeItem('searchCount'); // Elimina el contador de búsqueda de la sesión
+       
+    }
+
+    // Llama a esta función cuando sea necesario para eliminar la sesión
+    function logout() {
+        clearSession(); // Llama a la función para eliminar la sesión
+        
+    }
+
+    // Agrega un manejador de eventos al botón de "Cerrar Sesión"
+    const logoutButton = document.getElementById('logout-button');
+    logoutButton.addEventListener('click', function() {
+        logout(); // Llama a la función para eliminar la sesión cuando se hace clic en el botón
+        // Realiza otras acciones de cierre de sesión si es necesario
+    });
+
+    // Resto de tu código JavaScript
+});
+        // JavaScript para alternar entre las pestañas "24 horas" y "Semanal"
+        const hourlyTab = document.getElementById('hourly-tab');
+        const weeklyTab = document.getElementById('weekly-tab');
+        const hourlyForecast = document.querySelector('.hourly-forecast');
+        const weeklyForecast = document.querySelector('.weekly-forecast');
+
+        hourlyTab.addEventListener('click', () => {
+            hourlyTab.classList.add('active-tab');
+            weeklyTab.classList.remove('active-tab');
+            hourlyForecast.style.display = 'block';
+            weeklyForecast.style.display = 'none';
+        });
+
+        weeklyTab.addEventListener('click', () => {
+            weeklyTab.classList.add('active-tab');
+            hourlyTab.classList.remove('active-tab');
+            hourlyForecast.style.display = 'none';
+            weeklyForecast.style.display = 'block';
+        });
+
+        // Establecer "24 horas" como la pestaña activa por defecto
+        hourlyTab.click();
+    </script>
+</body>
+</html>
